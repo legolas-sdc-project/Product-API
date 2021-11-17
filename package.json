@@ -1,0 +1,28 @@
+{
+  "name": "product-api",
+  "version": "1.0.0",
+  "description": "product API for system design capstone",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/legolas-sdc-project/Product-API.git"
+  },
+  "author": "Eun Ji Roh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/legolas-sdc-project/Product-API/issues"
+  },
+  "homepage": "https://github.com/legolas-sdc-project/Product-API#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.3",
+    "nodemon": "^2.0.15"
+  }
+}
