@@ -104,4 +104,4 @@ dist
 .tern-port
 
 # Application Data files
-.csv
+database/data/

@@ -4,7 +4,8 @@
   "description": "product API for system design capstone",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-db": "sudo -u postgres psql -d atelierproducts < database/schemas.sql"
   },
   "repository": {
     "type": "git",
