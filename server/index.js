@@ -12,22 +12,46 @@ app.use(express.json());
 app.get('/products', (req, res) => {
   const count = req.query.count || 5;
   const page = req.query.page || 1;
-  db.getAllProducts(count, page);
+  db.getAllProducts(count, page, (err, results) => {
+    if (err) {
+      res.send(400);
+    } else {
+      res.send(results.rows);
+    }
+  });
 });
 
 app.get('/products/:product_id', (req, res) => {
   const productID = req.params.product_id;
-  db.getProduct(productID);
+  db.getProduct(productID, (err, results) => {
+    if (err) {
+      res.send(400);
+    } else {
+      res.send(results);
+    }
+  });
 });
 
 app.get('/products/:product_id/styles', (req, res) => {
   const productID = req.params.product_id;
-  db.getProductInfo(productID);
+  db.getProductInfo(productID, (err, results) => {
+    if (err) {
+      res.send(400);
+    } else {
+      res.send(results);
+    }
+  });
 });
 
 app.get('/products/:product_id/related', (req, res) => {
   const productID = req.params.product_id;
-  db.getRelatedInfo(productID);
+  db.getRelatedInfo(productID, (err, results) => {
+    if (err) {
+      res.send(400);
+    } else {
+      res.send(results);
+    }
+  });
 });
 
 // Run server
