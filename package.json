@@ -19,7 +19,9 @@
   },
   "homepage": "https://github.com/legolas-sdc-project/Product-API#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "pg": "^8.7.1"
   },
   "devDependencies": {
     "eslint": "^8.2.0",
