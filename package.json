@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-db": "sudo -u postgres psql -d atelierproducts < database/schemas.sql",
-    "load-db": "sudo -u postgres psql -d atelierproducts < database/seed.sql"
+    "load-db": "sudo -u postgres psql -d atelierproducts < database/seed.sql",
+    "start": "nodemon server/index.js"
   },
   "repository": {
     "type": "git",
