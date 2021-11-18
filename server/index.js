@@ -27,7 +27,7 @@ app.get('/products/:product_id', (req, res) => {
     if (err) {
       res.send(400);
     } else {
-      res.send(results);
+      res.send(results.rows);
     }
   });
 });
@@ -38,7 +38,7 @@ app.get('/products/:product_id/styles', (req, res) => {
     if (err) {
       res.send(400);
     } else {
-      res.send(results);
+      res.send(results.rows);
     }
   });
 });
@@ -49,7 +49,7 @@ app.get('/products/:product_id/related', (req, res) => {
     if (err) {
       res.send(400);
     } else {
-      res.send(results);
+      res.send(results.rows[0].json_agg);
     }
   });
 });

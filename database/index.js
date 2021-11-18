@@ -16,7 +16,7 @@ module.exports.getAllProducts = async (count, page, cb) => {
   const low = (page - 1) * count + 1;
   const high = page * count;
   const query = {
-    text: 'SELECT * FROM products WHERE product_id BETWEEN $1 and $2',
+    text: 'SELECT product_id, name, slogan, description, category, default_price FROM products WHERE product_id BETWEEN $1 and $2',
     values: [low, high],
   };
   await pool.query(query)
@@ -39,8 +39,11 @@ module.exports.getProductInfo = async (productID, cb) => {
 };
 
 module.exports.getRelatedInfo = async (productID, cb) => {
-  const query = {};
+  const query = {
+    text: 'SELECT json_agg(related_product_id) FROM related WHERE current_product_id = $1',
+    values: [productID],
+  };
   await pool.query(query)
-    .then()
-    .catch();
+    .then((results) => cb(null, results))
+    .catch((err) => cb(err));
 };
