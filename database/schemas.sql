@@ -19,7 +19,7 @@ CREATE TABLE styles (
   style_id SERIAL NOT NULL PRIMARY KEY,
   product_id INT REFERENCES products(product_id),
   name VARCHAR(30) NOT NULL,
-  sale_price SMALLINT,
+  sale_price INT,
   original_price INT,
   default_style BOOLEAN
 );
@@ -27,15 +27,15 @@ CREATE TABLE styles (
 CREATE TABLE photos (
   photo_id SERIAL NOT NULL PRIMARY KEY,
   style_id INT REFERENCES styles(style_id),
-  thumbnail_url TEXT,
-  url TEXT
+  url TEXT,
+  thumbnail_url TEXT
 );
 
 CREATE TABLE skus (
   sku_id SERIAL NOT NULL PRIMARY KEY,
   style_id INT REFERENCES styles(style_id),
-  quantity SMALLINT,
-  value VARCHAR(5)
+  size VARCHAR(10),
+  quantity INT
 );
 
 CREATE TABLE related (
