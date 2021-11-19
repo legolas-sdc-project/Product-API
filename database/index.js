@@ -16,7 +16,7 @@ module.exports.getAllProducts = async (count, page) => {
   const low = (page - 1) * count + 1;
   const high = page * count;
   const query = {
-    text: 'SELECT * FROM products WHERE product_id BETWEEN $1 and $2',
+    text: 'SELECT product_id AS id, name, slogan, description, category, default_price FROM products WHERE product_id BETWEEN $1 and $2',
     values: [low, high],
   };
   try {
@@ -29,13 +29,9 @@ module.exports.getAllProducts = async (count, page) => {
 
 module.exports.getProduct = async (productID) => {
   const query = {
-    text: "SELECT * FROM products (SELECT json_agg(json_build_object('feature', feature, 'value', value)) AS feats FROM features WHERE product_id = $1) WHERE product_id = $1",
+    text: "SELECT product_id AS id, name, slogan, description, category, default_price, (SELECT json_agg(json_build_object('feature', feature, 'value', value)) FROM features WHERE product_id = $1) AS features FROM products WHERE product_id = $1",
     values: [productID],
   };
-  // const query2 = {
-  //   text: "SELECT json_agg(json_build_object('feature', feature, 'value', value)) AS features FROM features WHERE product_id = $1",
-  //   values: [productID],
-  // };
 
   try {
     const product = await pool.query(query);
@@ -47,13 +43,13 @@ module.exports.getProduct = async (productID) => {
 
 module.exports.getProductInfo = async (productID) => {
   const query = {
-    text: '',
+    text: "SELECT product_id, (SELECT json_agg(json_build_object('style_id', s.style_id, 'name', s.name, 'original_price', s.original_price, 'sale_price', s.sale_price, 'default?', s.default_style, 'photos', (SELECT json_agg(json_build_object('thumbnail_url', p.thumbnail_url, 'url', p.url)) FROM photos p WHERE p.style_id = s.style_id), 'skus', (SELECT json_object_agg(skus.sku_id, json_build_object('quantity', skus.quantity, 'size', skus.size)) FROM skus WHERE skus.style_id = s.style_id))) AS results FROM styles s WHERE product_id = $1) FROM styles WHERE product_id = $1 GROUP BY product_id",
     values: [productID],
   };
 
   try {
     const productInfo = await pool.query(query);
-    return productInfo;
+    return productInfo.rows;
   } catch (err) {
     return err;
   }
