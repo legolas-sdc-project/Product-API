@@ -1,11 +1,13 @@
 const express = require('express');
 const morgan = require('morgan');
+const cors = require('cors');
 const db = require('../database/index');
 
 const app = express();
 
 // Logging and parsing
 app.use(morgan('dev'));
+app.use(cors());
 app.use(express.json());
 
 // Set up routes
@@ -55,6 +57,6 @@ app.get('/products/:product_id/related', async (req, res) => {
 });
 
 // Run server
-app.listen(3000, () => {
+app.listen(3010, () => {
   console.log('Listening...');
 });
