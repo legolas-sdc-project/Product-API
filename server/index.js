@@ -1,13 +1,13 @@
-require('newrelic');
+// require('newrelic');
 const express = require('express');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const cors = require('cors');
 const db = require('../database/index');
 
 const app = express();
 
 // Logging and parsing
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
 
