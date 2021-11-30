@@ -108,3 +108,8 @@ database/data/
 
 # New relic config file
 newrelic.js
+
+# Other
+SDC_DB.pem
+
+config.js
