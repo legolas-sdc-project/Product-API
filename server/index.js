@@ -14,7 +14,7 @@ app.use(express.json());
 
 // route to verify loader
 app.use('/loaderio-3e0794d9436238afb376f1b6f3e8016b', (req, res) => {
-  const loaderIOfile = fs.readFileSync('../loaderio-3e0794d9436238afb376f1b6f3e8016b.txt', 'utf-8');
+  const loaderIOfile = fs.readFileSync('./loaderio-3e0794d9436238afb376f1b6f3e8016b.txt', 'utf-8');
   res.send(loaderIOfile);
 });
 
