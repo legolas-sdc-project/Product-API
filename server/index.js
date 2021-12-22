@@ -1,15 +1,22 @@
-require('newrelic');
+// require('newrelic');
 const express = require('express');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const cors = require('cors');
+const fs = require('fs');
 const db = require('../database/index');
 
 const app = express();
 
 // Logging and parsing
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
+
+// route to verify loader
+app.use('/loaderio-3e0794d9436238afb376f1b6f3e8016b', (req, res) => {
+  const loaderIOfile = fs.readFileSync('./loaderio-3e0794d9436238afb376f1b6f3e8016b.txt', 'utf-8');
+  res.send(loaderIOfile);
+});
 
 // Set up routes
 app.get('/products', async (req, res) => {
