@@ -110,6 +110,6 @@ database/data/
 newrelic.js
 
 # Other
-SDC_DB.pem
+*.pem
 
 config.js
